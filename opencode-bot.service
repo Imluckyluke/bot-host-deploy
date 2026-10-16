@@ -1,0 +1,19 @@
+[Unit]
+Description=Telegram bot (opencode client)
+After=opencode-server.service
+Requires=opencode-server.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/bot/app
+EnvironmentFile=/opt/bot/.env
+Environment="PATH=/opt/opencode-v2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="HOME=/root"
+Environment="TMPDIR=/opt/bot/tmp"
+ExecStart=/usr/bin/node dist/index.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

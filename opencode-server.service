@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenCode v2 server (telegram bot backend)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/bot
+EnvironmentFile=/opt/bot/.env
+ExecStart=/opt/opencode-v2/bin/opencode serve --service --hostname 127.0.0.1 --port 49374
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
